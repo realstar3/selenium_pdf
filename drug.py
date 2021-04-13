@@ -29,7 +29,7 @@ def working(url):
     # driver.get("https://www.rxlist.com/babybig-drug.htm")
     driver.get(url)
     driver.execute_script('window.print();')   
-    time.sleep(20)     
+    time.sleep(15)     
     driver.quit()
       
 
