@@ -29,9 +29,9 @@ def working(url):
     #                                     headless=headless, disable_image_load=False)
     # driver.get("https://www.rxlist.com/babybig-drug.htm")
     driver.get(url)
-    btn = driver.find_element_by_xpath("//button[@class='eugdpr-consent-button']")
+    btn = driver.find_elements_by_xpath("//button[@class='eugdpr-consent-button']")
     if len(btn)>0:
-        btn.click()
+        btn[0].click()
         time.sleep(1)
     driver.execute_script('window.print();')   
     time.sleep(15)     
@@ -45,7 +45,7 @@ def get_urls(URL, fileName):
     chrome_options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=CHROMEDRIVER_PATH)
     driver.get(URL)
-    # driver.set_window_size(1300, 900)
+    
     all_li_tags = driver.find_elements_by_xpath("//ul/li")
     count = 1
     for li_tag in all_li_tags:
@@ -78,7 +78,7 @@ if __name__ == '__main__':
     if not os.path.isdir(folder):
             os.makedirs(folder)
     
-    # get_urls(first_url, fileName)
+    get_urls(first_url, fileName)
     df = pd.read_csv('./pdf/' + fileName)
     df.drop_duplicates(subset=fileName, keep = "first", inplace = True)
     count = len(df)
