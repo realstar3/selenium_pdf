@@ -75,6 +75,7 @@ if __name__ == '__main__':
     
     get_urls(first_url, fileName)
     df = pd.read_csv('./pdf/' + fileName)
+    df.drop_duplicates(subset=fileName, keep = "first", inplace = True)
     count = len(df)
     start = 0
     for i in range(start, count):
