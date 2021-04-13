@@ -1,4 +1,5 @@
 from datetime import datetime
+from selenium.webdriver import ActionChains
 import random
 # from insta_lib import *
 from selenium.webdriver.common.by import By
@@ -28,6 +29,10 @@ def working(url):
     #                                     headless=headless, disable_image_load=False)
     # driver.get("https://www.rxlist.com/babybig-drug.htm")
     driver.get(url)
+    btn = driver.find_element_by_xpath("//button[@class='eugdpr-consent-button']")
+    if len(btn)>0:
+        btn.click()
+        time.sleep(1)
     driver.execute_script('window.print();')   
     time.sleep(15)     
     driver.quit()
@@ -73,7 +78,7 @@ if __name__ == '__main__':
     if not os.path.isdir(folder):
             os.makedirs(folder)
     
-    get_urls(first_url, fileName)
+    # get_urls(first_url, fileName)
     df = pd.read_csv('./pdf/' + fileName)
     df.drop_duplicates(subset=fileName, keep = "first", inplace = True)
     count = len(df)
