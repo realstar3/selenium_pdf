@@ -91,6 +91,7 @@ if __name__ == '__main__':
         try:
             u = df.iloc[i, 0]
             working(u)
+            i = i + 1
             print(f"completed {i} /{n_total}, {u}")
         except Exception as e:
             print(f"failed {i} / {n_total}:  {e}")
