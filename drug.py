@@ -46,6 +46,10 @@ def get_urls(url, csv_file):
     chrome_options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=CHROMEDRIVER_PATH)
     driver.get(url)
+    btn = driver.find_elements_by_xpath("//button[@class='eugdpr-consent-button']")
+    if len(btn) > 0:
+        btn[0].click()
+        time.sleep(1)
     # driver.set_window_size(1300, 900)
     all_li_tags = driver.find_elements_by_xpath("//ul/li")
     count = 1
