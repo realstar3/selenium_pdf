@@ -83,6 +83,7 @@ if __name__ == '__main__':
     df = pd.read_csv(_csv_file)
 
     df.drop_duplicates(keep="first", inplace=True)
+    df.to_csv(_csv_file, index=False)
 
     n_total = len(df)
     start = 0
